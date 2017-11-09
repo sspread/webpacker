@@ -50,11 +50,11 @@ const getEntryObject = () => {
 }
 
 const getModulePaths = () => {
-  let result = new ConfigList()
+  const result = new ConfigList()
   result.set('source', resolve(config.source_path))
   result.set('node_modules', 'node_modules')
   if (config.resolved_paths) {
-    result = result.concat(config.resolved_paths)
+    config.resolved_paths.forEach(path => result.set(basename(path), path))
   }
   return result
 }
